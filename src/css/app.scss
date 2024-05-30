@@ -1,0 +1,32 @@
+.my-card {
+  width: 100%;
+  max-width: 314px;
+}
+
+.div-table {
+  max-width: 990px;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .div-table {
+    max-width: 660px;
+    margin: auto;
+  }
+}
+
+@media (max-width: 425px) {
+  .div-table {
+    max-width: 320px;
+    margin: auto;
+  }
+}
+
+@media (max-width: 375px) {
+  .top-menu {
+    display: none;
+  }
+  .sign-in {
+    display: none;
+  }
+}
