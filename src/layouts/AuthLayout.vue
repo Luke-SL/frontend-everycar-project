@@ -25,13 +25,33 @@
             Instagram
           </q-tooltip>
         </q-btn>
-        <q-btn
+        <q-btn-dropdown
           flat
           color="white"
           icon="person"
-          :label="$q.platform.is.mobile ? '' : 'Entrar'"
-          :to="{ name: 'login' }"
-        />
+          :label="$q.platform.is.mobile ? '' : `${user.user_metadata.name}`"
+        >
+          <q-list>
+            <q-item
+              clickable
+              v-if="user.user_metadata.is_writer"
+              :to="{ name: 'write' }"
+            >
+              <q-item-section>
+                <q-item-label
+                  ><q-icon name="mdi-fountain-pen" /> Escrever</q-item-label
+                >
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup @click="handleLogout">
+              <q-item-section>
+                <q-item-label class="text-negative"
+                  ><q-icon name="mdi-logout" /> Sair</q-item-label
+                >
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-btn-dropdown>
       </q-toolbar>
     </q-header>
 
@@ -57,20 +77,45 @@ import { ref } from "vue";
 import linksList from "./sideTable";
 import EssentialLink from "components/EssentialLink.vue";
 import { useQuasar } from "quasar";
+import useAuthUser from "src/composables/useAuthUser";
+import useNotify from "src/composables/useNotify";
+import { useRouter } from "vue-router";
 
 export default {
   name: "MainLayout",
   components: { EssentialLink },
   setup() {
     const $q = useQuasar();
-
+    const router = useRouter();
     const leftDrawerOpen = ref(false);
+    const { notifySuccess } = useNotify();
+
+    const { logout, user } = useAuthUser();
+
+    console.log();
+
+    const handleLogout = async () => {
+      $q.dialog({
+        title: "Logout",
+        message: "Tem certeza que quer sair?",
+        cancel: true,
+        cancelLabel: "No",
+        ok: true,
+        okLabel: "Yes",
+        color: "negative",
+        persistent: true,
+      }).onOk(async () => {
+        await logout();
+        notifySuccess("Você saiu!");
+        router.replace({ name: "index" });
+      });
+    };
 
     function toggleLeftDrawer() {
       leftDrawerOpen.value = !leftDrawerOpen.value;
     }
 
-    return { linksList, leftDrawerOpen, toggleLeftDrawer };
+    return { linksList, leftDrawerOpen, user, toggleLeftDrawer, handleLogout };
   },
 };
 </script>

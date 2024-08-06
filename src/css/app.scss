@@ -8,25 +8,86 @@
   margin: auto;
 }
 
-@media (max-width: 768px) {
+.img-email {
+  max-width: 300px;
+}
+
+.div-margin {
+  margin: auto;
+
+  max-width: 600px;
+
+  text-align: center;
+}
+
+.div-margin h1 {
+  font-size: 50px;
+}
+.div-margin h2 {
+  text-align: center;
+  font-size: 40px;
+}
+.div-margin p {
+  text-align: center;
+  font-size: 12px;
+}
+
+.name-input {
+  width: 48%;
+}
+
+@media (max-width: 1270px) {
+  .name-input {
+    width: 47.4%;
+  }
+}
+
+@media (max-width: 989px) {
   .div-table {
     max-width: 660px;
     margin: auto;
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 660px) {
   .div-table {
-    max-width: 320px;
+    max-width: 330px;
     margin: auto;
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 540px) {
+  .div-table {
+    max-width: 320px;
+    margin: auto;
+  }
   .top-menu {
     display: none;
   }
+  .name-input {
+    width: 47.6%;
+  }
+  .back-button {
+    display: none;
+  }
+}
+
+@media (max-width: 414px) {
   .sign-in {
     display: none;
+  }
+  .name-input {
+    width: 47.2%;
+  }
+}
+
+@media (max-width: 360px) {
+  .name-input {
+    width: 46.5%;
+  }
+}
+@media (max-width: 280px) {
+  .name-input {
+    width: 45.8%;
   }
 }

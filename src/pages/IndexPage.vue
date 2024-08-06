@@ -44,6 +44,8 @@
         :autoplay="autoplay"
         ref="carousel"
         infinite
+        arrows
+        navigation
       >
         <q-carousel-slide
           :name="1"
@@ -58,7 +60,7 @@
           img-src="https://conteudo.imguol.com.br/blogs/13/files/2018/08/F-150-Raptor-1024x680.jpg"
         />
 
-        <template v-slot:control v-if="!$q.platform.is.mobile">
+        <!--<template v-slot:control v-if="!$q.platform.is.mobile">
           <q-carousel-control
             position="top-right"
             :offset="[18, 18]"
@@ -73,32 +75,7 @@
               label="Auto Play"
             />
           </q-carousel-control>
-
-          <q-carousel-control
-            position="bottom-right"
-            :offset="[18, 18]"
-            class="q-gutter-xs"
-          >
-            <q-btn
-              push
-              round
-              dense
-              color="orange"
-              text-color="black"
-              icon="arrow_left"
-              @click="$refs.carousel.previous()"
-            />
-            <q-btn
-              push
-              round
-              dense
-              color="orange"
-              text-color="black"
-              icon="arrow_right"
-              @click="$refs.carousel.next()"
-            />
-          </q-carousel-control>
-        </template>
+        </template>-->
       </q-carousel>
     </div>
     <div class="div-table">
@@ -113,7 +90,7 @@
         hide-pagination
       >
         <template v-slot:item="props">
-          <div class="q-pa-sm">
+          <div class="q-pa-sm row">
             <q-card class="my-card">
               <q-img :src="props.row.thumbnail" />
 
